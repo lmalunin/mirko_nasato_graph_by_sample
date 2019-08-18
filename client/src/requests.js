@@ -8,6 +8,10 @@ export async function loadCompany(id) {
             id
             name
             description
+            jobs {
+                id
+                title
+              }
             }
         }`;
 
