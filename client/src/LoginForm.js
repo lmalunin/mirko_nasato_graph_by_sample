@@ -4,28 +4,28 @@ import { login } from './auth';
 export class LoginForm extends Component {
   constructor(props) {
     super(props);
-    this.state = {email: '', password: '', error: false};
+    this.state = { email: '', password: '', error: false };
   }
 
   handleChange(event) {
-    const {name, value} = event.target;
-    this.setState({[name]: value});
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
   }
 
   handleClick(event) {
     event.preventDefault();
-    const {email, password} = this.state;
+    const { email, password } = this.state;
     login(email, password).then((ok) => {
       if (ok) {
         this.props.onLogin();
       } else {
-        this.setState({error: true});
+        this.setState({ error: true });
       }
     });
   }
 
   render() {
-    const {email, password, error} = this.state;
+    const { email, password, error } = this.state;
     return (
       <form>
         <div className="field">
@@ -38,7 +38,7 @@ export class LoginForm extends Component {
         <div className="field">
           <label className="label">Password</label>
           <div className="control">
-            <input className="input" type="password" name="password" value={password}
+            <input className="input" name="password" value={password}
               onChange={this.handleChange.bind(this)} />
           </div>
         </div>
