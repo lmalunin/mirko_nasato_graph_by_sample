@@ -1,5 +1,19 @@
 const endpointURL = 'http://localhost:9000/graphql';
 
+export async function loadCompany(id) {
+
+    const query = `
+        query CompanyQuery($id: ID!){
+            company(id: $id) {
+            id
+            name
+            description
+            }
+        }`;
+
+    const { company } = await graphqlRequest(query, { id });
+    return company;
+}
 
 export async function loadJob(id) {
 
@@ -26,7 +40,7 @@ export async function loadJobs() {
     {
         jobs{
             id
-            titlez
+            title
             description
             company{
                 id
