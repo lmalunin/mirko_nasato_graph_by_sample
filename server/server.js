@@ -39,10 +39,13 @@ const server = new ApolloServer({
   resolvers,
   context: ({ req, res }) => {
 
+    if (!req.headers.authorization) {
+      return null;
+    }
     const token = req.headers.authorization.split(' ')[1];
-    const { sub: id } = jwt.verify(token, jwtSecret);
+    const { sub: userId } = jwt.verify(token, jwtSecret);
 
-    return { id };
+    return { userId };
   }
 });
 
